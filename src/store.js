@@ -62,9 +62,9 @@ export default new Vuex.Store({
       })
     },
     addTask (context, payload) {
-      let key = db.ref('tasks/').push(payload).key
+      db.ref('tasks/').push(payload)
       swal({
-        title: key,
+        text: 'Successfully add task!',
         icon: 'success'
       })
     },
