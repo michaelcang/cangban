@@ -4,6 +4,7 @@
       <strong>{{task.title}}</strong>
     </div>
     <div class="card-body">
+      <p class="card-text desc"><strong>Description</strong>: {{ task.desc }}</p>
       <p class="card-text"><strong>Points</strong>: {{task.point}}</p>
       <p class="card-text"><strong>Assign To</strong>: {{task.person}}</p>
     </div>
@@ -11,10 +12,10 @@
       <button @click="removeTask(task.id)" type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
       <div class="btn-group" role="group">
         <button @click="goLeft" v-if="task.status > 0" type="button" class="btn btn-outline-secondary btn-sm">
-          &larr;
+          <i class="fas fa-arrow-left"></i>
         </button>
         <button @click="goRight" v-if="task.status < 3" type="button" class="btn btn-outline-primary btn-sm">
-          &rarr;
+          <i class="fas fa-arrow-right"></i>
         </button>
       </div>
     </div>
@@ -48,11 +49,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .task {
   margin-bottom: 10px;
   text-align: left;
-  line-height: 0.5em;
+  line-height: 0.7em;
+  .desc {
+    white-space: pre-wrap;
+    line-height: 1.3em;
+  }
 }
 </style>
 
