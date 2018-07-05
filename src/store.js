@@ -71,38 +71,28 @@ export default new Vuex.Store({
     changeStatus ({ commit }, payload) {
       swal({
         text: 'Are you sure you want to move the task?',
-        buttons: true
+        buttons: [true, 'Move!']
       })
         .then((confirm) => {
           if (confirm) {
-            swal('Task moved!', {
-              icon: 'success'
-            })
             if (payload.toRight) {
               payload.task.status++
             } else {
               payload.task.status--
             }
             db.ref(`tasks/${payload.task.id}`).set(payload.task)
-          } else {
-            swal('Task stay!')
           }
         })
     },
     removeTask ({ commit }, payload) {
       swal({
         text: 'Are you sure you want to delete this task?',
-        buttons: true,
+        buttons: [true, 'Delete!'],
         dangerMode: true
       })
         .then((confirm) => {
           if (confirm) {
-            swal('Task deleted!', {
-              icon: 'success'
-            })
             db.ref(`tasks/${payload}`).remove()
-          } else {
-            swal('Task stay!')
           }
         })
     }
